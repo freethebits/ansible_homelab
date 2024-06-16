@@ -1,0 +1,13 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Update Repository Index
+    apt:
+      update_cache: yes
+
+  - name: Upgrade Packages
+    apt:
+      upgrade: dist
