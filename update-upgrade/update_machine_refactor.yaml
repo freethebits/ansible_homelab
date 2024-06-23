@@ -1,0 +1,18 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Update Repository Index in CentOS
+    dnf:
+      update_cache: yes
+      name: "*"
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: Update Repository Index in Debian
+    apt:
+      update_cache: yes
+      upgrade: dist
+    when: ansible_distribution == "Debian"
