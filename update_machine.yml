@@ -4,10 +4,23 @@
   become: true
   tasks:
 
-  - name: Update Repository Index
+  - name: Update Repository Index in CentOS
+    dnf:
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: Upgrade Packages in CentOS
+    dnf:
+      name: "*"
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: Update Repository Index in Debian
     apt:
       update_cache: yes
+    when: ansible_distribution == "Debian"
 
-  - name: Upgrade Packages
+  - name: Upgrade Packages in Debian
     apt:
       upgrade: dist
+    when: ansible_distribution == "Debian"
