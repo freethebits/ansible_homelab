@@ -5,6 +5,7 @@
   tasks:
 
   - name: Update Repository Index and Packages
+    tags: kubernetes,piserver,update
     package:
       update_cache: yes
       name: "*"
