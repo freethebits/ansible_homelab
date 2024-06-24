@@ -1,0 +1,11 @@
+---
+
+- hosts: kubeworkers
+  become: true
+  tasks:
+
+  - name: Update Repository Index and Packages
+    package:
+      update_cache: yes
+      name: "*"
+      state: latest

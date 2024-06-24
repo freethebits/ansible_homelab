@@ -1,8 +1,18 @@
 all:
   children:
     piserver:
-      children:
-        office_pi:
-          hosts:
-            commonmind:
-              ansible_host: 192.168.2.100
+      hosts:
+        commonmind:
+          ansible_host: 192.168.2.100
+    kubeworkers:
+      hosts:
+        piworker1:
+          ansible_host: 192.168.114.151
+        piworker2:
+          ansible_host: 192.168.114.152
+        piworker3:
+          ansible_host: 192.168.114.153
+    kubemaster:
+      hosts:
+        pimaster1:
+          ansible_host: 192.168.114.150
