@@ -4,6 +4,14 @@ all:
       hosts:
         commonmind:
           ansible_host: 192.168.2.100
+    dbservers:
+      hosts:
+        db-server:
+          ansible_host: 192.168.2.31
+    webservers:
+      hosts:
+        web-server:
+          ansible_host: 192.168.2.30
     kubeworkers:
       hosts:
         piworker1:
