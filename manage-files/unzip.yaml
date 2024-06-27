@@ -1,0 +1,21 @@
+---
+
+- hosts: webservers
+  become: true
+  tasks:
+
+  - name: Install Unzip package
+    remote_user: web
+    package:
+      name: unzip
+
+  - name: Install Terraform
+    remote_user: web
+    unarchive:
+      src: https://releases.hashicorp.com/terraform/1.9.0/terraform_1.9.0_linux_amd64.zip
+      dest: /usr/local/bin
+      remote_src: yes
+      owner: root
+      group: root
+      mode: 0755
+
