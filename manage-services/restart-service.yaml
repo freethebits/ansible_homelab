@@ -1,0 +1,21 @@
+---
+
+- hosts: tomcatservers
+  become: true
+  tasks:
+
+  - name: Change Email address for Admin
+    tags: apache, httpd, centos
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^ServerAdmin'
+      line: ServerAdmin somebody@somewhere.net
+    when: ansible_distribution == "CentOS"
+    register: httpd
+
+  - name: Restart httpd (CentOS)
+    service:
+      name: httpd
+      state: restarted
+      enabled: yes
+    when: httpd.changed
