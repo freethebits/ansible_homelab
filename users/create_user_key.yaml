@@ -1,0 +1,34 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Create ansible user in RedHat-based
+    tags: user, centos
+    user:
+      name: ansible
+      groups: wheel
+    when: ansible_os_family == "RedHat"
+
+  - name: Create ansible user in Debian-based
+    tags: user, ubuntu
+    user:
+      name: ansible
+      groups: sudo
+    when: ansible_os_family == "Debian"
+
+  - name: Add SSH key for ansible
+    tags: user, key
+    authorized_key:
+      user: ansible
+      key: "{{ lookup('file', '~/.ssh/ansible.pub') }}"
+
+  - name: Add sudoers file for ansible
+    tags: user, no-password
+    copy:
+      src: users/sudoer_ansible
+      dest: /etc/sudoers.d/ansible
+      owner: root
+      group: root
+      mode: 0440
