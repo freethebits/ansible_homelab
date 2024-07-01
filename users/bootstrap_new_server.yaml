@@ -2,10 +2,20 @@
 
 - hosts: all
   become: true
+  pre_tasks:
+
+  - name: Update Repository Index and Packages
+    package:
+      update_cache: yes
+      name: "*"
+      state: latest
+
+- hosts: all
+  become: true
   tasks:
 
   - name: Create ansible user in RedHat-based
-    tags: user, redhat
+    tags: user, centos
     user:
       name: ansible
       groups: wheel
