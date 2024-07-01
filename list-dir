@@ -1,0 +1,5 @@
+roles/database/task
+roles/file/task
+roles/raspi/task
+roles/tomcat/task
+roles/web/task

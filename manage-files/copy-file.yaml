@@ -6,7 +6,6 @@
 
   - name: Copy default.html file for WebServer
     tags: apache2, apache, httpd
-    remote_user: web
     copy:
       src: ~/ansible_homelab/manage-files/default.html
       dest: /var/www/html/index.html
