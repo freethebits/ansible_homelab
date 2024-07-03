@@ -1,7 +1,7 @@
 - name: Install Unzip package
-    package:
-      name: unzip
-      state: latest
+  package:
+    name: unzip
+    state: latest
 
 
 - name: Install Terraform

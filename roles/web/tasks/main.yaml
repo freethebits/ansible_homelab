@@ -1,0 +1,14 @@
+- name: Install Apache and PHP package (Ubuntu)
+  tags: apache,php,ubuntu
+  package:
+    name:
+      - "{{ apache_package_name }}"
+      - "{{ php_package_name }}"
+    state: latest
+
+- name: Start and Enable Apache (Ubuntu)
+  tags: apache,service,ubuntu
+  service:
+    name: "{{ apache_service }}"
+    state: started
+    enabled: yes

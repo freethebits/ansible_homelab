@@ -2,10 +2,10 @@
   yum:
     name: mariadb
     state: latest
-  when: ansible_distribution == "CentOS"
+  when: ansible_os_family == "CentOS"
 
 - name: Install MariaDB package (Debian)
   apt:
     name: mariadb-server
     state: latest
-  when: ansible_distribution == "Debian"
+  when: ansible_os_family == "Debian"
