@@ -12,3 +12,11 @@
     name: "{{ apache_service }}"
     state: started
     enabled: yes
+
+- name: Change Email address for Admin
+  tags: apache, config
+  lineinfile:
+    path: /etc/apache2/apache2.conf
+    regexp: '^ServerAdmin'
+    line: ServerAdmin somebody@somewhere.com
+  notify: restart_apache
