@@ -1,3 +1,4 @@
 ssh_port: 22346
 ssh_users: "braveyogurt ansible"
 ssh_template_file: sshd_config_ubuntu.j2
+ansible_sudoers_file: ansible

@@ -1,0 +1,13 @@
+- name: Generate quartz.service configuration file from template
+  tags: quartz
+  template:
+    src: "{{ quartz_template_file }}"
+    dest: /etc/systemd/system/quartz.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload_systemd_quartz
+
+- name: Install Tree package
+  package:
+    name: tree

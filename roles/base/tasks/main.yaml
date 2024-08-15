@@ -1,3 +1,10 @@
+- name: Create ansible user in Debian-based
+  tags: user, debian
+  user:
+    name: ansible
+    groups: sudo
+  when: ansible_os_family == "Debian"
+
 - name: Add SSH key for ansible
   tags: user, key
   authorized_key:
@@ -13,3 +20,12 @@
     group: root
     mode: 0644
   notify: restart_sshd
+
+- name: Add sudoers file for ansible
+  tags: user, no-password
+  copy:
+    src: "{{ ansible_sudoers_file }}"
+    dest: /etc/sudoers.d/ansible
+    owner: root
+    group: root
+    mode: 0440

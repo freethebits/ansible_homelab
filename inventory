@@ -8,6 +8,10 @@ all:
       hosts: 
         noteserver:
           ansible_host: 192.168.114.200
+        proxmox:
+          ansible_host: 192.168.114.155
+        postgres:
+          ansible_host: 192.168.114.220
     kubeworkers:
       hosts:
         piworker1:

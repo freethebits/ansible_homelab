@@ -1,0 +1,21 @@
+[Unit]
+Description=Quartz service
+Documentation=https://github.com/jackyzha0/quartz/blob/v4/README.md
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=/usr/bin/npx
+ConditionPathExists=/data/quartz
+ConditionPathExists=/usr/bin/npm
+
+[Service]
+WorkingDirectory=/data/quartz
+PreExecStart=/usr/bin/npm i
+ExecStart=/usr/bin/npx quartz build --directory=/data/obsidian/ --serve
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10s
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

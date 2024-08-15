@@ -1,0 +1,19 @@
+- name: Install Tree package
+  package:
+    name: tree
+- name: Allow port 3000
+  community.general.ufw:
+    rule: allow
+    port: 3000
+    proto: tcp
+- name: Allow port 5003
+  community.general.ufw:
+    rule: allow
+    port: 5003
+    proto: tcp
+- name: Allow port 5432
+  community.general.ufw:
+    rule: allow
+    port: 5432
+    proto: tcp
+  notify: reload_ufw

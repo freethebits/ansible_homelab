@@ -1,0 +1,3 @@
+- name: Install Tree package
+  package:
+    name: tree
