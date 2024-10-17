@@ -3,30 +3,20 @@ all:
     piserver:
       hosts:
         commonmind:
-          ansible_host: 192.168.2.100
-    webservers:
+          ansible_host: 192.168.114.171
+    proxmoxserver:
+      hosts: 
+        noteserver:
+          ansible_host: 192.168.114.200
+    kubeworkers:
       hosts:
-        web-server:
-          ansible_host: 192.168.2.30
-    dbservers:
+        piworker1:
+          ansible_host: 192.168.114.151
+        piworker2:
+          ansible_host: 192.168.114.152
+        piworker3:
+          ansible_host: 192.168.114.153
+    kubemaster:
       hosts:
-        db-server:
-          ansible_host: 192.168.2.31
-    tomcatservers:
-      hosts:
-        tomcatserver7:
-          ansible_host: 192.168.2.32
-#        tomcatserver6:
-#          ansible_host: 192.168.2.33
-#    kubeworkers:
-#      hosts:
-#        piworker1:
-#          ansible_host: 192.168.114.151
-#        piworker2:
-#          ansible_host: 192.168.114.152
-#        piworker3:
-#          ansible_host: 192.168.114.153
-#    kubemaster:
-#      hosts:
-#        pimaster1:
-#          ansible_host: 192.168.114.150
+        pimaster1:
+          ansible_host: 192.168.114.150

@@ -1,6 +1,6 @@
 ---
 
-- hosts: all, !tomcatservers
+- hosts: all
   become: true
   pre_tasks:
 
@@ -16,27 +16,32 @@
   roles:
     - base
 
-- hosts: webservers
-  become: true
-  roles:
-    - web
+#- hosts: webservers
+#  become: true
+#  roles:
+#    - web
 
-- hosts: dbservers
-  become: true
-  roles:
-    - database
+#- hosts: dbservers
+#  become: true
+#  roles:
+#    - database
 
 - hosts: piserver
   become: true
   roles:
     - raspi
 
-- hosts: tomcatservers
+- hosts: noteserver
   become: true
   roles:
-    - tomcat
+    - noteserver
 
-- hosts: fileservers
-  become: true
-  roles:
-    - file
+#- hosts: tomcatservers
+#  become: true
+#  roles:
+#    - tomcat
+
+#- hosts: fileservers
+#  become: true
+#  roles:
+#    - file
