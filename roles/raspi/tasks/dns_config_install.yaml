@@ -1,0 +1,32 @@
+- name: Install Bind9
+  apt:
+    name: bind9
+    state: present
+    update_cache: yes
+
+- name: Configure named.conf.local
+  template:
+    src: named.conf.local.j2
+    dest: /etc/bind/named.conf.local
+
+- name: Configure named.conf.options
+  template:
+    src: named.conf.options.j2
+    dest: /etc/bind/named.conf.options
+
+- name: Configure homelab.local zone file
+  template:
+    src: homelab.local.zone.j2
+    dest: /etc/bind/db.homelab.local
+
+- name: Configure reverse zone file (optional)
+  template:
+    src: reverse.zone.j2
+    dest: /etc/bind/db.reverse
+
+- name: Set correct permissions
+  file:
+    path: /etc/bind/
+    owner: bind
+    group: bind
+    recurse: yes

@@ -3,3 +3,4 @@ ssh_users: "ansible obsidian obsidian-vault"
 ssh_template_file: sshd_config_debian.j2
 quartz_template_file: quartz.j2
 ansible_sudoers_file: ansible
+braveyogurt_sudoers_file: braveyogurt

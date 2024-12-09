@@ -1,0 +1,9 @@
+zone "homelab.local" {
+    type master;
+    file "/etc/bind/db.homelab.local";
+};
+
+zone "114.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/db.reverse";
+};

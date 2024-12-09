@@ -29,3 +29,33 @@
     owner: root
     group: root
     mode: 0440
+
+- name: Create braveyogurt user in Debian-based
+  tags: user, debian
+  user:
+    name: braveyogurt
+    groups: sudo
+    shell: /bin/bash
+    create_home: yes
+  when: ansible_os_family == "Debian"
+
+- name: Add SSH key for ansible
+  tags: user, key
+  authorized_key:
+    user: braveyogurt
+    key: "{{ lookup('file', '~/.ssh/braveyogurt.pub') }}"
+
+- name: Add sudoers file for braveyogurt
+  tags: user, no-password
+  copy:
+    src: "{{ braveyogurt_sudoers_file }}"
+    dest: /etc/sudoers.d/braveyogurt
+    owner: root
+    group: root
+    mode: 0440
+
+- name: Install nslookup & dig
+  apt:
+    name: dnsutils
+    state: present
+    update_cache: yes

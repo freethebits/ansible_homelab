@@ -2,3 +2,6 @@
   package:
     name: unzip
     state: latest
+
+- include_tasks: create_user_bind.yaml
+- include_tasks: dns_config_install.yaml
