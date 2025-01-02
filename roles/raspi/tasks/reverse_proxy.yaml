@@ -1,0 +1,28 @@
+- name: Install Nginx
+  ansible.builtin.package:
+    name: nginx
+    state: present
+
+- name: Deploy Nginx Configuration from Template
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/homelab
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable Nginx Site
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/homelab
+    dest: /etc/nginx/sites-enabled/homelab
+    state: link
+
+- name: Remove Default Nginx Site
+  ansible.builtin.file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Restart Nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted

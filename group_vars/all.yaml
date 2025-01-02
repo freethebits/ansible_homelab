@@ -1,0 +1,4 @@
+search_domain: homelab.local
+search_domain_gabi: gabi.local
+primary_dns: 192.168.114.171
+secondary_dns: 1.1.1.1

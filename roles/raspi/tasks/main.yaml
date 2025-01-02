@@ -5,3 +5,4 @@
 
 - include_tasks: create_user_bind.yaml
 - include_tasks: dns_config_install.yaml
+- include_tasks: reverse_proxy.yaml

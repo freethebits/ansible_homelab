@@ -1,0 +1,20 @@
+nginx_sites:
+  - name: notes
+    server_name: notes.homelab.local
+    upstream: 192.168.114.200:8080
+
+  - name: ansible
+    server_name: ansible.homelab.local
+    upstream: 192.168.114.170:3000
+
+  - name: peppermint
+    server_name: peppermint.homelab.local
+    upstream: 192.168.114.151:30003
+
+  - name: recipes
+    server_name: recipes.homelab.local
+    upstream: 192.168.114.153:31816
+
+planka_sites:
+  - server_name: planka.homelab.local
+    upstream: 192.168.114.152:30010

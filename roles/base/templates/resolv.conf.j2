@@ -1,0 +1,7 @@
+# Managed by Ansible
+search {{ search_domain }}
+search {{ search_domain_gabi }}
+nameserver {{ primary_dns }}
+{% if secondary_dns %}
+nameserver {{ secondary_dns }}
+{% endif %}

@@ -3,6 +3,12 @@ zone "homelab.local" {
     file "/etc/bind/db.homelab.local";
 };
 
+zone "gabi.local"{
+        type forward;
+        forward only;
+        forwarders { 10.0.31.1; };
+};
+
 zone "114.168.192.in-addr.arpa" {
     type master;
     file "/etc/bind/db.reverse";

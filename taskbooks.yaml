@@ -15,23 +15,28 @@
   become: true
   roles:
     - base
+  tags: base
 
 - hosts: piserver
   become: true
   roles:
     - raspi
+  tags: raspi
 
 - hosts: noteserver
   become: true
   roles:
     - noteserver
+  tags: noteserver
 
 - hosts: pimaster1
   become: true
   roles:
     - pimaster1
+  tags: pimaster1
 
 - hosts: kubeworkers
   become: true
   roles:
     - kubeworkers
+  tags: kubeworkers

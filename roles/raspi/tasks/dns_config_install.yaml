@@ -8,21 +8,25 @@
   template:
     src: named.conf.local.j2
     dest: /etc/bind/named.conf.local
+  notify: restart_bind9
 
 - name: Configure named.conf.options
   template:
     src: named.conf.options.j2
     dest: /etc/bind/named.conf.options
+  notify: restart_bind9
 
 - name: Configure homelab.local zone file
   template:
     src: homelab.local.zone.j2
     dest: /etc/bind/db.homelab.local
+  notify: restart_bind9
 
 - name: Configure reverse zone file (optional)
   template:
     src: reverse.zone.j2
     dest: /etc/bind/db.reverse
+  notify: restart_bind9
 
 - name: Set correct permissions
   file:

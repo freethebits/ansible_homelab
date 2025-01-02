@@ -1,0 +1,27 @@
+- name: Configure resolv.conf
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Restart networking to apply DNS changes (if needed)
+  block:
+    - name: Check if systemd-resolved is active
+      command: systemctl is-active systemd-resolved
+      register: resolved_status
+      changed_when: resolved_status.stdout == "active"
+      failed_when: false
+
+    - name: Restart systemd-resolved if active
+      service:
+        name: systemd-resolved
+        state: restarted
+      when:
+        - ansible_facts['os_family'] == 'Debian'
+        - resolved_status.stdout == "active"
+  rescue:
+    - name: Log failure to check or restart systemd-resolved
+      debug:
+        msg: "Failed to check or restart systemd-resolved, skipping."

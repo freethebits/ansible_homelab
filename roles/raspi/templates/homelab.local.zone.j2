@@ -1,6 +1,6 @@
 $TTL 86400
 @   IN  SOA dns.homelab.local. root.homelab.local. (
-        1   ; Serial
+        2024121004   ; Serial
         604800 ; Refresh
         86400  ; Retry
         2419200; Expire
@@ -9,5 +9,16 @@ $TTL 86400
 @   IN  NS  dns.homelab.local.
 dns IN  A   {{ ansible_host }}
 
-ansible IN A  192.168.114.150
+; DNS SERVERS
+@              IN       NS       intdns.homelab.local.
+intdns         IN       A        192.168.114.171
 
+; REVERSE PROXY SUBDOMAINs
+ansible          IN  A   192.168.114.171   ; HTTPS on port 3000
+notes            IN  A   192.168.114.171   ; HTTPS on port 8080
+
+
+; KUBERNETES SERVICES
+peppermint       IN  A   192.168.114.171   ; Kubernetes cluster
+planka           IN  A   192.168.114.171   ; Kubernetes cluster
+recipes          IN  A   192.168.114.171   ; Kubernetes cluster
